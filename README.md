@@ -8,7 +8,7 @@ Flask-Records is an extension that manuiplate the DB with the raw sql for the fl
 
 ### Usage
 
-#### setup
+#### Setup
 
 Add the flask-records to your flask application.
 ```python
@@ -25,7 +25,7 @@ from flask_records import FlaskRecords
 raw_db = FlaskRecords()
 raw_db.init_app(app)
 ```
-#### access DB with flask records
+#### Access DB With Flask Records
 
 We have provided two decorators for easy using in the development:
 

@@ -22,19 +22,33 @@ def is_func_or_static_method_in_decorator(func, *args):
     return is_function_or_static_method
 
 
-def get_params_of_func(func, *args, **kwargs):
+def _parse_signature(func, *args, **kwargs):
     """
     retrieve the parameters of the func, and organize as a dict to pass to the db engine
     """
     is_function_or_static_method = is_func_or_static_method_in_decorator(
         func, *args)
-    signatures = list(inspect.signature(func).parameters.keys())
+
+    parameters = list(inspect.signature(func).parameters.keys())
+
+    def _parse_default(func):
+        parameters = inspect.signature(func).parameters.values()
+        for parameter in parameters:
+            if parameter.default is not parameter.empty:
+                kwargs[parameter.name] = parameter.default
+
+        return kwargs
+
     if not is_function_or_static_method:
-        signatures.pop(0)
+        parameters.pop(0)
         _, *args = args
-    for signature, value in zip(signatures, args):
+
+    kwargs = _parse_default(func)
+
+    for parameter, value in zip(parameters, args):
         if isinstance(value, dict):
             kwargs.update(value)
         else:
-            kwargs.update({signature: value})
+            kwargs.update({parameter: value})
+
     return kwargs

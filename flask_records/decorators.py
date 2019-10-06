@@ -2,8 +2,9 @@ import inspect
 from functools import wraps
 from collections import namedtuple
 from flask import current_app
+from werkzeug.utils import _parse_signature
 
-from .parse_args import get_params_of_func
+from ._internals import _parse_signature
 from .errors import ParameterNotDefinedError
 
 
@@ -15,7 +16,8 @@ def query(sql, fetchall=False):
     def db_query(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            parameters = get_params_of_func(func, *args, **kwargs)
+            # print(_parse_signature(func, args, kwargs))
+            parameters = _parse_signature(func, *args, **kwargs)
             results = current_app.raw_db.query(sql, fetchall, **parameters)
             return results
         return wrapper
@@ -26,7 +28,7 @@ def query_by_page(sql, fetchall=False, page_size=10):
     def db_query(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            parameters = get_params_of_func(func, *args, **kwargs)
+            parameters = _parse_signature(func, *args, **kwargs)
             page = parameters.get('page', None)
             if not page:
                 raise ParameterNotDefinedError('page')

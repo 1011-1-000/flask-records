@@ -18,6 +18,24 @@ def read_user(id):
         return user.name
 
 
+@app.route('/basic/user/r_no_params')
+def read_user_without_params():
+    user = get_user_without_params().first()
+    if not user:
+        return 'The user does not exist!'
+    else:
+        return user.name
+
+
+@app.route('/basic/user/r_with_default_params')
+def read_user_with_default_params():
+    user = get_user_with_default_params().first()
+    if not user:
+        return 'The user does not exist!'
+    else:
+        return user.name
+
+
 @app.route('/basic/user/u/<id>/<name>')
 def update_user(id, name='my'):
     update_user_by_id(id, name)
@@ -50,6 +68,16 @@ def delete_user_by_id(id):
     pass
 
 
+@query("SELECT * FROM user where id = 1", True)
+def get_user_without_params():
+    pass
+
+
+@query("SELECT * FROM user where id = :id", True)
+def get_user_with_default_params(id=1):
+    pass
+
+
 class TestCase(BasicTestCase):
 
     def test_1_create(self):
@@ -60,6 +88,12 @@ class TestCase(BasicTestCase):
     def test_2_read(self):
         response = self.app.get('/basic/user/r/1')
         assert b'xc' == response.data
+
+        response = self.app.get('/basic/user/r_no_params')
+        self.assertEqual(b'xc', response.data)
+
+        response = self.app.get('/basic/user/r_with_default_params')
+        self.assertEqual(b'xc', response.data)
 
     def test_3_update(self):
         self.app.get('/basic/user/u/1/my')

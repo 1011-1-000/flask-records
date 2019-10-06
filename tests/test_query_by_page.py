@@ -22,7 +22,7 @@ class UserDao(RecordsDao):
         super(UserDao, self).__init__()
 
     @query_by_page('SELECT * FROM user', True, page_size=2)
-    def query_user_by_page(self, page):
+    def query_user_by_page(self, page=1):
         pass
 
 

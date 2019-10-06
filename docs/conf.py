@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Flask-Records'
-copyright = '2019, 10111000'
-author = '10111000'
+copyright = '2019, Leo.10111000'
+author = 'Leo.10111000'
 
 # The short X.Y version
 version = ''

@@ -87,4 +87,4 @@ class UserDao(RecordsDao):
 
 For detailed instructions on the features, please refer to the flask records documentation.
 
-
+- [Documentation](http://10111000.com/flask_records/)

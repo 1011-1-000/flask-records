@@ -88,7 +88,7 @@ html_theme = 'alabaster'
 #
 # html_theme_options = {}
 html_theme_options = {
-    'github_user': 'PassWarer',
+    'github_user': '1011-1-000',
     'github_repo': 'flask-records',
     'github_banner': True,
     'github_button': True,

@@ -2,7 +2,7 @@ import inspect
 from functools import wraps
 from collections import namedtuple
 from flask import current_app
-from ._internals import _parse_signature_v2 as _parse_signature
+from ._internals import _parse_signature
 from .errors import ParameterNotDefinedError
 
 

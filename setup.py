@@ -47,7 +47,7 @@ class PublishCommand(Command):
 
 setup(
     name="flask_records",
-    version="0.0.9",
+    version="0.0.10",
     author="leo",
     author_email="leo.anonymous@qq.com",
     description="Flask wrapper for the SQL Records",

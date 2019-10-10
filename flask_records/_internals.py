@@ -25,7 +25,7 @@ def is_func_or_static_method_in_decorator(func, *args):
     return is_function_or_static_method
 
 
-def _parse_signature_v2(func, *args, **kwargs):
+def _parse_signature(func, *args, **kwargs):
     """
     retrieve the parameters of the func, and organize as a dict to pass to the db engine
     """

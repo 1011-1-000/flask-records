@@ -10,7 +10,7 @@ from flask_records.records_dao import RecordsDao
 basedir = os.path.dirname(__file__)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:////{basedir}/app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////{}/app.db'.format(basedir)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)

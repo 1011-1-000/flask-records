@@ -1,4 +1,7 @@
 import inspect
+from ._compat import getargspec
+from ._compat import iteritems
+from werkzeug.utils import bind_arguments
 from types import MethodType
 
 
@@ -22,33 +25,23 @@ def is_func_or_static_method_in_decorator(func, *args):
     return is_function_or_static_method
 
 
-def _parse_signature(func, *args, **kwargs):
+def _parse_signature_v2(func, *args, **kwargs):
     """
     retrieve the parameters of the func, and organize as a dict to pass to the db engine
     """
     is_function_or_static_method = is_func_or_static_method_in_decorator(
         func, *args)
 
-    parameters = list(inspect.signature(func).parameters.keys())
+    parameters_dict = bind_arguments(func, args, kwargs)
 
-    def _parse_default(func):
-        parameters = inspect.signature(func).parameters.values()
-        for parameter in parameters:
-            if parameter.default is not parameter.empty:
-                kwargs[parameter.name] = parameter.default
-
-        return kwargs
+    flatten_parameters_dict = {}
+    for parameter, value in iteritems(parameters_dict):
+        if isinstance(value, dict):
+            flatten_parameters_dict.update(value)
+        else:
+            flatten_parameters_dict.update({parameter: value})
 
     if not is_function_or_static_method:
-        parameters.pop(0)
-        _, *args = args
+        flatten_parameters_dict.pop('self')
 
-    kwargs = _parse_default(func)
-
-    for parameter, value in zip(parameters, args):
-        if isinstance(value, dict):
-            kwargs.update(value)
-        else:
-            kwargs.update({parameter: value})
-
-    return kwargs
+    return flatten_parameters_dict

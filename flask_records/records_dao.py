@@ -7,7 +7,7 @@ from .decorators import query
 from .errors import NotFoundFieldError
 
 
-class RecordsDao:
+class RecordsDao(object):
     """
     The Basic Dao which provide the simple crud operations as default.
     """
@@ -31,7 +31,7 @@ class RecordsDao:
 
         values = []
         for column in columns:
-            values.append(f':{column}')
+            values.append(':{column}'.format(column=column))
 
         @query(RecordsDao.CREATE_SQL.format(self.table_name, ','.join(columns), ','.join(values)))
         def _create(attributes):
@@ -60,7 +60,8 @@ class RecordsDao:
 
         column_assembly = []
         for column in columns:
-            column_assembly.append(f'{column} = :{column}')
+            column_assembly.append(
+                '{column} = :{column}'.format(column=column))
 
         @query(RecordsDao.UPDATE_SQL.format(self.table_name, ','.join(column_assembly)))
         def _update(attributes):

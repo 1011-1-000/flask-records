@@ -5,10 +5,10 @@ class Error(Exception):
 class ParameterNotDefinedError(Error):
 
     def __init__(self, parameters):
-        self.message = f'{parameters} is required'
+        self.message = '{} is required'.format(parameters)
 
 
 class NotFoundFieldError(Error):
 
     def __init__(self, parameters, table):
-        self.message = f'{parameters} is not in the {table} table'
+        self.message = '{} is not in the {} table'.format(parameters, table)

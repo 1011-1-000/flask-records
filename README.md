@@ -1,6 +1,7 @@
 ## Flask Records
 
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/flask-records.svg)
+[![Build Status](https://travis-ci.org/1011-1-000/flask-records.svg?branch=master)](https://travis-ci.org/1011-1-000/flask-records)
 
 Flask-Records is an extension that manuiplate the DB with the raw sql for the flask application using records.
 

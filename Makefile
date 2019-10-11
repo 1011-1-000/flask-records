@@ -24,9 +24,6 @@ clean-dist:
 	@find . -name 'dist' -type d | xargs rm -fr
 	@find . -name '*.egg-info' -type d | xargs rm -fr
 
-clean-env:
-	conda remove -
-
 clean:clean-pyc clean-dist
 	@echo "## Clean all data."
 

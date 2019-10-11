@@ -67,9 +67,15 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7'
     ],
-    install_requires=['Flask>=0.9',
-                      'Flask-SQLAlchemy>=1.0'
-                      'records>=0.5.3'],
+    install_requires=[
+        'Flask>=0.9',
+        'records>=0.5.3'
+    ],
+    tests_require=[
+        'Flask>=0.9',
+        'Flask-SQLAlchemy>=1.0'
+        'records>=0.5.3'
+    ],
     cmdclass={
         'publish': PublishCommand,
     }

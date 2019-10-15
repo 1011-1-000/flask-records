@@ -36,7 +36,7 @@ class PublishCommand(Command):
             pass
 
         self.status('Building Source and Wheel (universal) distribution...')
-        os.system('python setup.py sdist)
+        os.system('python setup.py sdist')
 
         self.status('Uploading the package to PyPi via Twine...')
         os.system('twine upload dist/*')

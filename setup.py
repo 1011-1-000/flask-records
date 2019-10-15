@@ -36,8 +36,7 @@ class PublishCommand(Command):
             pass
 
         self.status('Building Source and Wheel (universal) distribution...')
-        os.system(
-            '{} setup.py sdist bdist_wheel --universal'.format(sys.executable))
+        os.system('python setup.py sdist)
 
         self.status('Uploading the package to PyPi via Twine...')
         os.system('twine upload dist/*')
@@ -47,7 +46,7 @@ class PublishCommand(Command):
 
 setup(
     name="flask_records",
-    version="0.0.10",
+    version="0.0.12",
     author="leo",
     author_email="leo.anonymous@qq.com",
     description="Flask wrapper for the SQL Records",
@@ -69,11 +68,12 @@ setup(
     ],
     install_requires=[
         'Flask>=0.9',
+        'Flask-SQLAlchemy>=1.0',
         'records>=0.5.3'
     ],
     tests_require=[
         'Flask>=0.9',
-        'Flask-SQLAlchemy>=1.0'
+        'Flask-SQLAlchemy>=1.0',
         'records>=0.5.3'
     ],
     cmdclass={

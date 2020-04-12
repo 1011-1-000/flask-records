@@ -37,7 +37,7 @@ We have provided two decorators for easy using in the development:
 The basic query decorator you can use in the flask records.
 
 ```python
-from flask_records.decorator import query
+from flask_records.decorators import query
 
 @query("INSERT INTO users VALUES(:id, :name, :age)")
 def hello_flask_records(id, name, age):
@@ -48,7 +48,7 @@ def hello_flask_records(id, name, age):
 
 also, you can wrap all the parameters in a dictionary and pass it to the function.
 ```python
-from flask_records.decorator import query
+from flask_records.decorators import query
 
 @query( "INSERT INTO users VALUES(:id, :name, :age)")
 def hello_flask_records(parameters):
@@ -68,7 +68,7 @@ def hello_flask_records(parameters):
 This is the decorator which for the pagination.
 
 ```python
-from flask_records.decorator import query_by_page
+from flask_records.decorators import query_by_page
 
 @query_by_page("SELECT * FROM users", 2)
 def hello_flask_records(page):

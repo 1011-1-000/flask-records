@@ -1,5 +1,6 @@
-#### Release 0.0.13
+#### Release 0.0.14
 - Fix the initialize issue in the way like FlaskRecords()
+- Modified the error in the Doc
 
 #### Release 0.0.9
 - Support the default params in the function when do the query

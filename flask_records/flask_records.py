@@ -4,11 +4,10 @@ from records import Database
 
 class FlaskRecords(Database):
 
-    def __init__(self, flask_app, **kwargs):
-        self.db_url = flask_app.config['SQLALCHEMY_DATABASE_URI'] or os.environ.get(
-            'DATABASE_URL')
-        super(FlaskRecords, self).__init__(self.db_url, **kwargs)
-        flask_app.raw_db = self
+    def __init__(self, flask_app = None):
+        self.flask_app = flask_app
+        if flask_app is not None:
+            self.init_app(flask_app)
 
     def init_app(self, flask_app, **kwargs):
         self.db_url = flask_app.config['SQLALCHEMY_DATABASE_URI'] or os.environ.get(

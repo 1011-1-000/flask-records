@@ -79,6 +79,6 @@ setup(
         'pandas>=0.23.0'
     ],
     cmdclass={
-        'publish': PublishCommand,
+        'publish': PublishCommand
     }
 )

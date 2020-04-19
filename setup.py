@@ -46,7 +46,7 @@ class PublishCommand(Command):
 
 setup(
     name="flask_records",
-    version="0.0.14",
+    version="0.0.15",
     author="leo",
     author_email="leo.anonymous@qq.com",
     description="Flask wrapper for the SQL Records",
@@ -69,12 +69,14 @@ setup(
     install_requires=[
         'Flask>=0.9',
         'Flask-SQLAlchemy>=1.0',
-        'records>=0.5.3'
+        'records>=0.5.3',
+        'pandas>=0.23.0'
     ],
     tests_require=[
         'Flask>=0.9',
         'Flask-SQLAlchemy>=1.0',
-        'records>=0.5.3'
+        'records>=0.5.3',
+        'pandas>=0.23.0'
     ],
     cmdclass={
         'publish': PublishCommand,

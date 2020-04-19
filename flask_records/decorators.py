@@ -21,6 +21,14 @@ def query(sql, fetchall=False):
         return wrapper
     return db_query
 
+def bulk_query(sql, fetchall=False):
+    def db_query(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            results = current_app.raw_db.bulk_query(sql, *args)
+            return results
+        return wrapper
+    return db_query
 
 def query_by_page(sql, fetchall=False, page_size=10):
     def db_query(func):

@@ -1,5 +1,6 @@
 import os
-from records import Database
+from records import Database 
+from .patchs import Record, RecordCollection
 
 
 class FlaskRecords(Database):

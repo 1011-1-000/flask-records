@@ -3,7 +3,5 @@ language: python
 python:
   - 3.6
   - 3.7
-  - pypy
-  - pypy3
 install: python setup.py install
 script: python setup.py test
